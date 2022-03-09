@@ -23,6 +23,7 @@ interface Rule {
   range: string;
   useGlobalRange: boolean;
   prefix?: string;
+  formula: FormulaPart[];
 }
 interface FormulaPart {
   name: string;
@@ -81,6 +82,12 @@ export class AppComponent {
       range: '{ Starting Number: 1000, Ending Number: 4999 }',
       useGlobalRange: false,
       prefix: 'AHS',
+      formula: [
+        { name: '<Prefix>' },
+        { name: '<Location Code>' },
+        { name: '<Cart Number>' },
+        { name: '<Asset Number>' },
+      ],
     },
     {
       name: 'Middle School Chromebook Template',
@@ -88,12 +95,18 @@ export class AppComponent {
       range: '{ Starting Number: 5000, Ending Number: 9999 }',
       useGlobalRange: false,
       prefix: 'AMS',
+      formula: [
+        { name: '<Prefix>' },
+        { name: '<Location Code>' },
+        { name: '<Asset Number>' },
+      ],
     },
     {
       name: 'Default Template',
       rule: '{ Location: All, Funding Source: All, Chassis Type: All, Tenant Product: All, Process: All }',
       range: '{ Starting Number: 1, Ending Number: 9999 }',
       useGlobalRange: true,
+      formula: [{ name: '<Prefix>' }, { name: '<Asset Number>' }],
     },
   ];
 

@@ -1,17 +1,21 @@
 <div class="app">
   <div class="headline">
     <h1>
-      First matching rule will be applied when generating asset tag numbers
+      First matching template will be applied when generating asset tag numbers
     </h1>
-    <h3>Reorder rules by dragging and dropping</h3>
+    <h3>Reorder template by dragging and dropping</h3>
   </div>
   <div class="rules" cdkDropList (cdkDropListDropped)="drop($event)">
     <div class="rule" *ngFor="let rule of rules; let index = index" cdkDrag>
       <h3>{{ index + 1 }}: {{ rule.name }}</h3>
-      <p>Rule: {{ rule.rule }}</p>
+      <p>Applies to: {{ rule.rule }}</p>
       <p *ngIf="rule.useGlobalRange">Range: Global</p>
       <p *ngIf="!rule.useGlobalRange">Custom Range: {{ rule.range }}</p>
       <p *ngIf="rule.prefix">Prefix: {{ rule.prefix }}</p>
+      <div class="formula-preview">
+        <p>Formula:</p>
+        <p *ngFor="let formulaPart of rule.formula">{{ formulaPart.name }}</p>
+      </div>
     </div>
   </div>
   <div class="rule-dropdowns">

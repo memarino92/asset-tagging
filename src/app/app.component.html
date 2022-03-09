@@ -1,16 +1,21 @@
 <div class="app">
-  <div>
-    <h1>First matching rule will be applied</h1>
+  <div class="headline">
+    <h1>
+      First matching rule will be applied when generating asset tag numbers
+    </h1>
+    <h3>Reorder rules by dragging and dropping</h3>
   </div>
   <div class="rules" cdkDropList (cdkDropListDropped)="drop($event)">
-    <div class="rule" *ngFor="let rule of rules" cdkDrag>
+    <div class="rule" *ngFor="let rule of rules; let index = index" cdkDrag>
+      <h3>{{ index + 1 }}: {{ rule.name }}</h3>
       <p>Rule: {{ rule.rule }}</p>
-      <p>Range: {{ rule.range }}</p>
+      <p *ngIf="rule.useGlobalRange">Range: Global</p>
+      <p *ngIf="!rule.useGlobalRange">Custom Range: {{ rule.range }}</p>
       <p *ngIf="rule.prefix">Prefix: {{ rule.prefix }}</p>
     </div>
   </div>
   <div class="rule-dropdowns">
-    <h4>New Rule:</h4>
+    <h4>New Template:</h4>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Location</mat-label>
@@ -73,6 +78,20 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button value="1">Use Global Range</mat-radio-button>
+      <mat-radio-button value="2">Use Custom Range</mat-radio-button>
+    </mat-radio-group>
     <button mat-fab>Add</button>
+  </div>
+  <div
+    class="formula"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="formulaDrop($event)"
+  >
+    <div *ngFor="let formulaPart of formula" cdkDrag class="formula-part">
+      <p>{{ formulaPart.name }}</p>
+    </div>
   </div>
 </div>

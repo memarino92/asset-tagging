@@ -70,6 +70,10 @@
   justify-content: center;
 }
 
+.formula-builder {
+  text-align: center;
+}
+
 .formula {
   width: 1000px;
   max-width: 100%;
@@ -87,9 +91,8 @@
   border-right: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   box-sizing: border-box;
   cursor: move;
   background: white;
@@ -99,6 +102,15 @@
 }
 .formula-part:last-child {
   border: none;
+}
+
+.formula-part-action {
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.add-new-formula-part {
+  margin: 0.5rem;
 }
 
 mat-form-field,

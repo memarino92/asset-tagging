@@ -88,14 +88,21 @@
     </mat-radio-group>
     <button mat-fab>Add</button>
   </div>
-  <div
-    class="formula"
-    cdkDropList
-    cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="formulaDrop($event)"
-  >
-    <div *ngFor="let formulaPart of formula" cdkDrag class="formula-part">
-      <p>{{ formulaPart.name }}</p>
+  <div class="formula-builder">
+    <h3>Drag and drop to reorder formula pieces</h3>
+    <div
+      class="formula"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="formulaDrop($event)"
+    >
+      <div *ngFor="let formulaPart of formula" cdkDrag class="formula-part">
+        <p><{{ formulaPart.name }}></p>
+        <mat-icon class="formula-part-action">delete</mat-icon>
+      </div>
+    </div>
+    <div class="add-new-formula-part">
+      <button>Add new formula piece</button>
     </div>
   </div>
 </div>

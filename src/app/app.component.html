@@ -1,61 +1,78 @@
 <div class="app">
   <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Location</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let location of locations" [value]="location.name">
-          {{ location.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <h1>First matching rule will be applied</h1>
   </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Funding</mat-label>
-      <mat-select>
-        <mat-option
-          *ngFor="let fundingSource of fundingSources"
-          [value]="fundingSource.name"
-        >
-          {{ fundingSource.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="rules" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="rule" *ngFor="let rule of rules" cdkDrag>
+      <p>Rule: {{ rule.rule }}</p>
+      <p>Range: {{ rule.range }}</p>
+      <p *ngIf="rule.prefix">Prefix: {{ rule.prefix }}</p>
+    </div>
   </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Chassis Type</mat-label>
-      <mat-select>
-        <mat-option
-          *ngFor="let chassisType of chassisTypes"
-          [value]="chassisType.name"
-        >
-          {{ chassisType.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Tenant Product</mat-label>
-      <mat-select>
-        <mat-option
-          *ngFor="let tenantProduct of tenantProducts"
-          [value]="tenantProduct.name"
-        >
-          {{ tenantProduct.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Process</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let process of processes" [value]="process.name">
-          {{ process.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="rule-dropdowns">
+    <h4>New Rule:</h4>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Location</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let location of locations"
+            [value]="location.name"
+          >
+            {{ location.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Funding</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let fundingSource of fundingSources"
+            [value]="fundingSource.name"
+          >
+            {{ fundingSource.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Chassis Type</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let chassisType of chassisTypes"
+            [value]="chassisType.name"
+          >
+            {{ chassisType.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Tenant Product</mat-label>
+        <mat-select>
+          <mat-option
+            *ngFor="let tenantProduct of tenantProducts"
+            [value]="tenantProduct.name"
+          >
+            {{ tenantProduct.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Process</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let process of processes" [value]="process.name">
+            {{ process.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-fab>Add</button>
   </div>
 </div>
